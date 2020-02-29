@@ -9,11 +9,11 @@
       name="viewport"
       content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
+    <link rel="manifest" href="manifest.json">
 
-    <!-- jquery is required - zepto might do the trick too -->
+
     <script src="./libs/jquery-1.10.1.min.js"></script>
     <script src="./libs/simple-undo.js"></script>
-
     <link rel="stylesheet" href="./libs/drawingboard/drawingboard.min.css" />
     <script src="./libs/drawingboard/drawingboard.min.js"></script>
 
@@ -64,6 +64,15 @@
         size: 3,
         webStorage: "local"
       });
+
+      // 检测浏览器是否支持SW
+      if(navigator.serviceWorker != null){
+        navigator.serviceWorker.register('sw.js')
+                .then(function(registartion){
+                  console.log(registartion.scope)
+                })
+      }
+
     </script>
   </body>
 </html>
